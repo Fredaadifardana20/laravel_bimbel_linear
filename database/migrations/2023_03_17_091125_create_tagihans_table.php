@@ -28,12 +28,12 @@ return new class extends Migration
         });
         Schema::create('tagihan_details', function (Blueprint $table) {
             $table->string('id');
-            $table->uuid('id_user');
+            $table->string('id_admin');
             $table->timestamps();
         });
         Schema::table('tagihan_details', function (Blueprint $table) {
             $table->foreign('id')->references('id')->on('tagihans');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_admin')->references('id')->on('admins');
         });
 
     }
@@ -47,7 +47,7 @@ return new class extends Migration
     {
         Schema::table('tagihan_details', function (Blueprint $table) {
             $table->dropForeign('tagihan_details_id_foreign');
-            $table->dropForeign('tagihan_details_id_user_foreign');
+            $table->dropForeign('tagihan_details_id_admin_foreign');
         });
         Schema::table('tagihans', function (Blueprint $table) {
             $table->dropForeign('tagihans_id_siswa_foreign');
